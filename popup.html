@@ -1,0 +1,42 @@
+<!doctype html>
+<meta charset="UTF-8" />
+<html>
+    <head>
+        <title>Quick Links</title>
+        <link rel="stylesheet" href="popup.css" />
+    </head>
+    <body>
+        <div class="popup-container">
+            <header class="popup-header">
+                <h2>Your Links</h2>
+                <button
+                    id="settings-btn"
+                    class="settings-icon"
+                    title="Open Settings"
+                >
+                    <img
+                        src="icons/setting.png"
+                        alt="Delete"
+                        width="16"
+                        height="16"
+                    />
+                </button>
+            </header>
+
+            <div id="links-list" class="links-list-container">
+                <p
+                    id="no-profiles-popup-message"
+                    class="empty-message"
+                    style="display: none"
+                >
+                    No links set up yet.<br />Click the gear icon!
+                </p>
+            </div>
+
+            <div class="footer">
+                <span id="copy-feedback" class="feedback"></span>
+            </div>
+        </div>
+        <script src="popup.js"></script>
+    </body>
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<meta charset="UTF-8" />
+<html>
+    <head>
+        <title>Social URL Manager Settings</title>
+        <link rel="stylesheet" href="options.css" />
+        <!-- placeholder for icon lib -->
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> -->
+    </head>
+    <body>
+        <div class="container">
+            <header class="main-header">
+                <h1>Social Media URL Manager</h1>
+                <div class="header-actions">
+                    <button id="add-profile-btn" class="button button-primary">
+                        <span class="icon-placeholder"> &#x2795; </span> Add
+                        Profile
+                    </button>
+                    <button id="reset-all-btn" class="button button-secondary">
+                        <span class="icon-placeholder"> &#x1F504; </span> Reset
+                        All
+                    </button>
+                </div>
+            </header>
+
+            <div id="profile-list" class="profile-list-container">
+                <!-- profile items will be added here -->
+                <p id="no-profiles-message" style="display: none">
+                    No profiles added yet. Click "Add Profile" to start.
+                </p>
+            </div>
+
+            <p class="footer-note">
+                Click the copy icon
+                <img src="icons/copy.png" alt="Delete" width="16" height="16" />
+                to copy the full URL to your clipboard.
+            </p>
+            <span id="status-message" class="status"></span>
+            <!-- for save/error messages -->
+        </div>
+
+        <!-- the modal -->
+        <div id="profile-modal" class="modal">
+            <div class="modal-content">
+                <header class="modal-header">
+                    <h2 id="modal-title">Add Social Profile</h2>
+                    <button id="close-modal-btn" class="close-button">×</button>
+                </header>
+                <form id="profile-form">
+                    <input type="hidden" id="profile-id" />
+
+                    <div class="form-group">
+                        <label for="platform">Platform</label>
+                        <select id="platform" name="platform" required>
+                            <option value="linkedin">LinkedIn</option>
+                            <option value="twitter">X / Twitter</option>
+                            <option value="github">GitHub</option>
+                            <option value="website">Website</option>
+                            <option value="youtube">YouTube</option>
+                            <option value="custom">Custom</option>
+                        </select>
+                    </div>
+
+                    <div
+                        class="form-group"
+                        id="custom-platform-group"
+                        style="display: none"
+                    >
+                        <label for="custom-platform-name"
+                            >Custom Platform Name</label
+                        >
+                        <input
+                            type="text"
+                            id="custom-platform-name"
+                            placeholder="e.g., Blog, Portfolio"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username">Username / Display Text</label>
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="e.g., stalwartcoder"
+                            required
+                        />
+                        <small>The text shown below the platform name.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="url">Full URL</label>
+                        <input
+                            type="url"
+                            id="url"
+                            name="url"
+                            placeholder="https://..."
+                            required
+                        />
+                        <small>The complete URL that will be copied.</small>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button
+                            type="submit"
+                            id="save-profile-btn"
+                            class="button button-primary"
+                        >
+                            Add Profile
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script src="options.js"></script>
+    </body>
+</html>

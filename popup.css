@@ -1,0 +1,158 @@
+body {
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Oxygen,
+        Ubuntu,
+        Cantarell,
+        "Open Sans",
+        "Helvetica Neue",
+        sans-serif;
+    margin: 0;
+    font-size: 14px;
+    min-width: 300px;
+    background-color: #f9fafb;
+}
+
+.popup-container {
+    padding: 10px 15px;
+}
+
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.popup-header h2 {
+    margin: 0;
+    font-size: 1.1em;
+    color: #1f2937;
+    font-weight: 600;
+}
+
+.settings-icon {
+    background: none;
+    border: none;
+    font-size: 1.4em;
+    cursor: pointer;
+    color: #6b7280;
+    padding: 2px 5px;
+    border-radius: 4px;
+    line-height: 1;
+}
+.settings-icon:hover {
+    color: #1f2937;
+    background-color: #f3f4f6;
+}
+
+.links-list-container {
+    max-height: 400px;
+    overflow-y: auto;
+
+.profile-item {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.profile-item:hover {
+    background-color: #f7f8fc;
+    border-color: #d1d5db;
+}
+
+.profile-icon img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+.profile-icon span {
+    font-size: 1.3em;
+    color: #4b5563;
+}
+
+.profile-info {
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.profile-info .platform-name {
+    font-weight: 500;
+    color: #111827;
+    display: block;
+    margin-bottom: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.profile-info .username {
+    color: #6b7280;
+    font-size: 0.9em;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.copy-icon-popup {
+    cursor: pointer;
+    color: #6b7280;
+    font-size: 1.1em;
+    background: none;
+    border: none;
+    padding: 5px;
+    border-radius: 4px;
+    margin-left: auto;
+    flex-shrink: 0;
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease;
+}
+.copy-icon-popup:hover {
+    color: #1f2937;
+    background-color: #f3f4f6;
+}
+
+.footer {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+    min-height: 18px;
+}
+
+.feedback {
+    font-size: 0.85em;
+    font-weight: 500;
+}
+.feedback.success {
+    color: #059669;
+}
+.feedback.error {
+    color: #dc2626;
+}
+
+.empty-message {
+    text-align: center;
+    color: #6b7280;
+    padding: 25px 10px;
+    font-size: 0.95em;
+    line-height: 1.4;
+}
