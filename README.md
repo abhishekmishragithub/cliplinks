@@ -1,6 +1,6 @@
 # ClipLinks
 
-![ClipLinks Logo](assets/cliplinks-logo.png)
+![ClipLinks Logo](assets/logo.png)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -8,7 +8,9 @@ Tired of hunting for your social media profile URLs or personal website links ev
 
 Perfect for developers, designers, content creators, job seekers, or anyone who frequently shares their online presence.
 
-![ClipLinks Popup with Links](assets/popup-links.png)
+
+<img src="assets/popup-links.png" alt="ClipLinks Popup with Links" width="450">
+
 
 ## Features
 
@@ -22,8 +24,8 @@ Perfect for developers, designers, content creators, job seekers, or anyone who 
 Since this extension isn't on the official browser web stores (yet!), you need to load it manually as an "unpacked extension":
 
 1.  **Download:**
-    *   Go to the [**Releases** page](https://github.com/YOUR_USERNAME/ClipLinks/releases) (Replace `YOUR_USERNAME` with your actual GitHub username) and download the latest `.zip` file (e.g., `cliplinks-v1.0.0.zip`).
-    *   **OR**, if you prefer, [clone or download](https://github.com/YOUR_USERNAME/ClipLinks/archive/refs/heads/main.zip) this repository's `main` branch.
+    *   Go to the [**Releases** page](https://github.com/abhishekmishragithub/ClipLinks/releases) and download the latest `.zip` file (e.g., `cliplinks-v1.0.0.zip`).
+    *   **OR**, if you prefer, [clone or download](https://github.com/abhishekmishragithub/ClipLinks/archive/refs/heads/main.zip) this repository's `main` branch.
 2.  **Unzip:** Extract the downloaded `.zip` file into a dedicated folder on your computer. You should have a folder containing `manifest.json`, `popup.html`, `icons/`, etc.
 3.  **Open Browser Extensions:**
     *   **Chrome/Brave:** Type `chrome://extensions` in your address bar and press Enter.
@@ -34,7 +36,9 @@ Since this extension isn't on the official browser web stores (yet!), you need t
     *   Navigate to and select the **folder** where you extracted the extension files (the folder that directly contains the `manifest.json` file).
 6.  **Done!** The ClipLinks icon should now appear in your browser's toolbar. You might need to click the puzzle piece icon (🧩) to pin it.
 
-![ClipLinks Popup Empty](assets/popup-empty.png)
+
+<img src="assets/popup-empty.png" alt="ClipLinks Popup Empty" width="450">
+
 
 ## Usage
 
@@ -67,14 +71,15 @@ Manage your links via the Settings page:
 4.  **Reset All:**
     *   Click the "Reset All" button to remove **all** saved profiles permanently (confirmation required).
 
-![ClipLinks Settings Page](assets/settings-page.png)
+
+<img src="assets/settings-page.png" alt="ClipLinks Settings Page" width="750">
 
 
 ## Development
 
 Interested in improving ClipLinks?
 
-1.  Clone this repository: `git clone https://github.com/YOUR_USERNAME/ClipLinks.git`
+1.  Clone this repository: `git clone https://github.com/abhishekmishragithub/ClipLinks.git`
 2.  Load the cloned folder as an unpacked extension (see Installation steps).
 3.  Make your code changes.
 4.  After saving changes, go back to `chrome://extensions` (or `edge://extensions`) and click the "Reload" button (🔄) for the ClipLinks extension.
