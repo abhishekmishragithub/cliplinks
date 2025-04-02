@@ -44,31 +44,54 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1500); // Clear message after 1.5 seconds
   }
 
+  function createIconElement(profile) {
+    const iconValue = profile.displayIcon || profile.platform;
+
+    if (platformDetails[iconValue]) {
+      const iconPath = getIconPath(iconValue, profile.customPlatformName);
+      const platformName = getPlatformDisplayName(
+        iconValue,
+        profile.customPlatformName,
+      );
+      const img = document.createElement("img");
+      img.src = iconPath;
+      img.alt = platformName;
+      return img;
+    } else {
+      const span = document.createElement("span");
+      span.classList.add("profile-emoji-icon");
+      span.textContent = iconValue;
+      span.setAttribute("aria-label", "Emoji icon");
+      return span;
+    }
+  }
+
   function renderProfileItem(profile) {
     const div = document.createElement("div");
     div.classList.add("profile-item");
     div.title = `Click to copy: ${profile.url}`;
 
-    const iconPath = getIconPath(profile.platform, profile.customPlatformName);
+    const iconContainer = document.createElement("div");
+    iconContainer.classList.add("profile-icon");
+    const iconElement = createIconElement(profile);
+    iconContainer.appendChild(iconElement);
+
     const platformDisplayName = getPlatformDisplayName(
       profile.platform,
       profile.customPlatformName,
     );
 
-    const iconElement = `<img src="${iconPath}" alt="${platformDisplayName}">`;
-    // const iconElement = `<span class="icon-placeholder">?</span>`; //  placeholder
-
     div.innerHTML = `
-            <div class="profile-icon">
-                ${iconElement}
-            </div>
-            <div class="profile-info">
-                <span class="platform-name">${platformDisplayName}</span>
-                <span class="username">${profile.username}</span>
-            </div>
-        `;
+          <div class="profile-info">
+              <span class="platform-name">${platformDisplayName}</span>
+              <span class="username">${profile.username}</span>
+          </div>
+          <!-- Optional: Add a dedicated copy icon here if needed -->
+          <!-- <button class="copy-icon-popup" title="Copy URL">❐</button> -->
+      `;
 
-    // click listener to the whole item for copying
+    div.prepend(iconContainer);
+
     div.addEventListener("click", () => {
       navigator.clipboard
         .writeText(profile.url)

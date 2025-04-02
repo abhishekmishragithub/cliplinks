@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Quick Social Links",
-  "version": "1.0",
-  "description": "Quickly copy your social media profile URLs. Set your links in the options.",
+  "name": "ClipLinks",
+  "version": "1.0.1",
+  "description": "Instantly copy your social media and website links with a single click.",
   "permissions": ["storage"],
   "action": {
     "default_popup": "popup.html",

@@ -61,6 +61,49 @@
                         </select>
                     </div>
 
+                    <div class="form-group">
+                        <label>Icon Choice</label>
+                        <div class="radio-group">
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="iconChoice"
+                                    value="platform"
+                                    id="iconChoicePlatform"
+                                    checked
+                                />
+                                Use Platform Icon
+                            </label>
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="iconChoice"
+                                    value="emoji"
+                                    id="iconChoiceEmoji"
+                                />
+                                Use Emoji
+                            </label>
+                        </div>
+                    </div>
+
+                    <div
+                        class="form-group"
+                        id="emoji-input-group"
+                        style="display: none"
+                    >
+                        <label for="emoji-input">Emoji</label>
+                        <input
+                            type="text"
+                            id="emoji-input"
+                            placeholder="Enter a single emoji (e.g., 🔗)"
+                            maxlength="2"
+                        />
+                        <small
+                            >Enter one or two characters. Display may
+                            vary.</small
+                        >
+                    </div>
+
                     <div
                         class="form-group"
                         id="custom-platform-group"

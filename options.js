@@ -16,6 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const customPlatformNameInput = document.getElementById(
     "custom-platform-name",
   );
+  const iconChoicePlatform = document.getElementById("iconChoicePlatform");
+  const iconChoiceEmoji = document.getElementById("iconChoiceEmoji");
+  const emojiInputGroup = document.getElementById("emoji-input-group");
+  const emojiInput = document.getElementById("emoji-input");
   const usernameInput = document.getElementById("username");
   const urlInput = document.getElementById("url");
   const saveProfileBtn = document.getElementById("save-profile-btn");
@@ -49,7 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
       urlPrefix: "https://youtube.com/@",
     },
     custom: { name: "Custom", icon: "icons/custom.png", urlPrefix: "" },
-    // TODO: let user choose the icon or emoji for custom fields
   };
 
   function showStatus(message, isError = false, duration = 3000) {
@@ -77,6 +80,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function openModal(profile = null) {
     profileForm.reset();
+    iconChoicePlatform.checked = true; // default to platform icon
+    emojiInputGroup.style.display = "none"; // hide emoji input initially
+    emojiInput.required = false;
     customPlatformGroup.style.display = "none";
     profileIdInput.value = "";
 
@@ -91,6 +97,23 @@ document.addEventListener("DOMContentLoaded", () => {
       if (profile.platform === "custom") {
         customPlatformGroup.style.display = "block";
         customPlatformNameInput.value = profile.customPlatformName || "";
+        customPlatformNameInput.required = true;
+      } else {
+        customPlatformGroup.style.display = "none"; // ensure hidden if not custom
+        customPlatformNameInput.required = false;
+      }
+      const iconValue = profile.displayIcon || profile.platform;
+      if (platformDetails[iconValue]) {
+        // it's a platform key, check platform radio
+        iconChoicePlatform.checked = true;
+        emojiInputGroup.style.display = "none";
+        emojiInput.required = false;
+      } else {
+        // assume it's an emoji
+        iconChoiceEmoji.checked = true;
+        emojiInput.value = iconValue;
+        emojiInputGroup.style.display = "block";
+        emojiInput.required = true;
       }
     } else {
       modalTitle.textContent = "Add Social Profile";
@@ -119,43 +142,61 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function createIconElement(profile) {
+    const iconValue = profile.displayIcon || profile.platform;
+
+    if (platformDetails[iconValue]) {
+      const iconPath = getIconPath(iconValue, profile.customPlatformName);
+      const platformName = getPlatformDisplayName(
+        iconValue,
+        profile.customPlatformName,
+      );
+      const img = document.createElement("img");
+      img.src = iconPath;
+      img.alt = platformName;
+      // note: icon size is set by CSS .profile-icon
+      return img;
+    } else {
+      const span = document.createElement("span");
+      span.classList.add("profile-emoji-icon");
+      span.textContent = iconValue;
+      span.setAttribute("aria-label", "Emoji icon");
+      return span;
+    }
+  }
+
   // profile section
   function renderProfileItem(profile) {
     const div = document.createElement("div");
     div.classList.add("profile-item");
     div.dataset.id = profile.id;
 
-    const iconPath = getIconPath(profile.platform, profile.customPlatformName);
+    const iconContainer = document.createElement("div");
+    iconContainer.classList.add("profile-icon");
+    const iconElement = createIconElement(profile);
+    iconContainer.appendChild(iconElement);
+
     const platformDisplayName = getPlatformDisplayName(
       profile.platform,
       profile.customPlatformName,
     );
 
     div.innerHTML = `
-            <div class="profile-icon">
-                <img src="${iconPath}" alt="${platformDisplayName}">
-                <!-- Or use: <span class="icon-placeholder">L</span> -->
-            </div>
-            <div class="profile-info">
-                <span class="platform-name">${platformDisplayName}</span>
-                <span class="username">${profile.username}</span>
-            </div>
-            <div class="profile-actions">
-                <button class="action-icon copy-btn" title="Copy URL">
-                      <img src="icons/copy.png" alt="Delete" width="16" height="16">
-                </button>
-                <button class="action-icon edit-btn" title="Edit Profile">
-                      <img src="icons/edit.png" alt="Delete" width="16" height="16">
-                </button>
-                <button class="action-icon delete-btn" title="Delete Profile">
-                      <img src="icons/delete.png" alt="Delete" width="16" height="16">
-                </button>
-            </div>
-        `;
+          <div class="profile-info">
+              <span class="platform-name">${platformDisplayName}</span>
+              <span class="username">${profile.username}</span>
+          </div>
+          <div class="profile-actions">
+              <button class="action-icon copy-btn" title="Copy URL"><img src="icons/copy.png" alt="Copy" width="16" height="16"></button>
+              <button class="action-icon edit-btn" title="Edit Profile"><img src="icons/edit.png" alt="Edit" width="16" height="16"></button>
+              <button class="action-icon delete-btn" title="Delete Profile"><img src="icons/delete.png" alt="Delete" width="16" height="16"></button>
+          </div>
+      `;
 
-    // event listener for actions
+    div.prepend(iconContainer);
+
     div.querySelector(".copy-btn").addEventListener("click", (e) => {
-      e.stopPropagation(); // prevent triggering other listeners if nested
+      e.stopPropagation();
       navigator.clipboard
         .writeText(profile.url)
         .then(() => {
@@ -297,9 +338,50 @@ document.addEventListener("DOMContentLoaded", () => {
   // update URL prefix when platform changes
   platformSelect.addEventListener("change", handlePlatformChange);
 
-  // handle form (add or edit)
+  iconChoicePlatform.addEventListener("change", () => {
+    if (iconChoicePlatform.checked) {
+      emojiInputGroup.style.display = "none";
+      emojiInput.required = false;
+    }
+  });
+  iconChoiceEmoji.addEventListener("change", () => {
+    if (iconChoiceEmoji.checked) {
+      emojiInputGroup.style.display = "block";
+      emojiInput.required = true;
+      emojiInput.focus();
+    }
+  });
+
   profileForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    let chosenDisplayIcon;
+    if (iconChoicePlatform.checked) {
+      chosenDisplayIcon = platformSelect.value;
+    } else {
+      // emoji radio is checked
+      const emojiValue = emojiInput.value.trim();
+      if (!emojiValue) {
+        showStatus(
+          'Please enter an emoji or select "Use Platform Icon".',
+          true,
+          4000,
+        );
+        emojiInput.focus();
+        return;
+      }
+
+      if (emojiValue.length > 2) {
+        showStatus(
+          "Please enter only one or two characters for the emoji.",
+          true,
+          4000,
+        );
+        emojiInput.focus();
+        return;
+      }
+      chosenDisplayIcon = emojiValue; // use the entered emoji
+    }
 
     const profileData = {
       id: profileIdInput.value || null,
@@ -310,6 +392,7 @@ document.addEventListener("DOMContentLoaded", () => {
         platformSelect.value === "custom"
           ? customPlatformNameInput.value.trim()
           : null,
+      displayIcon: chosenDisplayIcon,
     };
 
     if (profileData.platform === "custom" && !profileData.customPlatformName) {

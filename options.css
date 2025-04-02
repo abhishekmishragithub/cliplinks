@@ -280,3 +280,56 @@ h1 {
     padding: 30px 0;
     font-style: italic;
 }
+
+#profile-form .radio-group {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+#profile-form .radio-group label {
+    margin-right: 20px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+#profile-form .radio-group input[type="radio"] {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+#emoji-input-group {
+    margin-top: -5px;
+}
+#emoji-input {
+    max-width: 150px;
+    font-size: 1.2em;
+    text-align: center;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.profile-emoji-icon {
+    font-size: 1.5em;
+    line-height: 1;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+.profile-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+
+    height: 24px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.profile-icon img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    object-fit: contain;
+}
