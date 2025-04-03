@@ -2,6 +2,8 @@
 
 ![ClipLinks Logo](assets/logo.png)
 
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/eighjjglgpdklpmghphnapidhlciflbm?label=Chrome%20Web%20Store&color=blue&logo=google-chrome&logoColor=white)](https://chromewebstore.google.com/detail/cliplinks/eighjjglgpdklpmghphnapidhlciflbm)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Tired of hunting for your social media profile URLs or personal website links every time you need to share them? **ClipLinks** is a simple, fast, and privacy-focused browser extension that keeps all your important links just a click away. Configure once, copy instantly!
@@ -88,6 +90,16 @@ Interested in improving ClipLinks?
 ## Contributing
 
 Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/abhishekmishragithub/cliplinks/issues). If you'd like to contribute code, please feel free to fork the repository and submit a pull request.
+
+## Acknowledgements / Credits
+
+**Icons used in this extension are from [Flaticon](https://www.flaticon.com), created by the following authors:**
+- [kiranshastry](https://www.flaticon.com/authors/kiranshastry)
+- [Catalin Fertu](https://www.flaticon.com/authors/catalin-fertu)
+- [Freepik](https://www.flaticon.com/authors/freepik)
+- [LAFS](https://www.flaticon.com/authors/lafs)
+- [riajulislam](https://www.flaticon.com/authors/riajulislam)
+
 
 ## License
 
